@@ -52,20 +52,29 @@ Phases, artifacts and the ten-step mapping: [docs/workflow.md](docs/workflow.md)
 
 ## Installation
 
-Three lines: install the command, let it place the skill where your agent reads it,
-then look at what it can do.
+Two routes. The first needs nothing but Python 3.9+, which is why it comes first.
 
 ```bash
-pipx install git+https://github.com/AomiXplorer/aomi.git
-aomi install
-aomi --help
+git clone https://github.com/AomiXplorer/aomi.git
+cd aomi
+python3 install.py
+```
+
+That puts the `aomi` command in `~/.local/bin` and asks once whether to copy the
+skill into your agent. No pip, no virtualenv, no root. If the folder is not on your
+PATH, it prints the one line to add.
+
+Already have pipx? One line instead:
+
+```bash
+pipx install git+https://github.com/AomiXplorer/aomi.git && aomi install
 ```
 
 `aomi install` detects your agent, offers a short list, copies the runtime files and
 verifies the copy. `--agent claude`, `--global` and `--dir PATH` skip the questions.
-No pipx? `python3 -m aomi` runs the same commands straight from a checkout.
+To undo the command: `python3 install.py --uninstall`.
 
-Every agent's folder, the manual route and Termux notes:
+Termux, Windows, each agent's folder and the manual route:
 [docs/installation.md](docs/installation.md).
 
 ## Usage

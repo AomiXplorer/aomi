@@ -61,9 +61,9 @@ rather than obligation.
 | `references/palettes.md` | written for Aomi; hex values chosen here and measured with Aomi's own tool |
 | `references/stack-notes.md` | written for Aomi |
 | `templates/` (6 files) | written for Aomi |
-| `aomi/` (cli, engine, installer, adapters, init, config, ui, paths) | written for Aomi |
+| `aomi/` (cli, engine, installer, adapters, init, config, bootstrap, ui, paths) | written for Aomi |
 | `scripts/aomi.py` | written for Aomi; a shim that hands over to `aomi.cli` |
-| `scripts/run.sh` | written for Aomi |
+| `install.py`, `scripts/run.sh` | written for Aomi |
 | `scripts/build_assets.py` | written for Aomi |
 | `pyproject.toml`, `setup.py`, `MANIFEST.in` | written for Aomi; packaging metadata only, no dependency |
 | `docs/cli.md`, `docs/installation.md` | written for Aomi |

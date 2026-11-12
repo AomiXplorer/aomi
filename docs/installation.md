@@ -5,8 +5,47 @@ a minute, no dependencies, Python 3.9 or newer.
 
 ## 1. Install the command
 
-The recommended way is pipx, which keeps `aomi` in its own environment and puts one
-command on your PATH:
+### The route that needs nothing but Python: `install.py`
+
+Clone, then run the installer that ships with the repository. It needs no pip, no
+virtualenv, no root and no network:
+
+```bash
+git clone https://github.com/AomiXplorer/aomi.git
+cd aomi
+python3 install.py
+```
+
+It asks one question (set up the command, copy the skill into an agent, or both),
+then:
+
+* copies the package to `~/.local/share/aomi` (honours `XDG_DATA_HOME`);
+* writes a launcher to `~/.local/bin/aomi`;
+* runs that launcher once and prints the version it got back, so you can see it
+  works before you trust it.
+
+If `~/.local/bin` is not on your PATH, it prints the exact line to add for your
+shell. It never edits your shell profile for you.
+
+```bash
+aomi --version      # aomi 1.1.0
+```
+
+Non-interactive, for a script or a CI image:
+
+```bash
+python3 install.py --yes                       # the command only
+python3 install.py --yes --skill --agent cursor  # command and skill
+python3 install.py --uninstall --yes           # remove the command again
+```
+
+The folder the installer needs and the folder your agent reads are different
+things, which is why there are two halves. `--skill` alone does the second one
+without touching `~/.local`.
+
+### If you already have pipx
+
+That is one line fewer, and it keeps `aomi` in its own environment:
 
 ```bash
 pipx install git+https://github.com/AomiXplorer/aomi.git
@@ -14,19 +53,11 @@ aomi --version
 ```
 
 If `aomi: command not found` appears, run `pipx ensurepath` and open a new shell.
+`pipx upgrade aomi` updates it later.
 
-Without pipx, either of these works:
+### If you would rather install nothing at all
 
-```bash
-pip install --user git+https://github.com/AomiXplorer/aomi.git   # into your user site
-python3 -m venv .venv && . .venv/bin/activate                    # or a venv
-pip install git+https://github.com/AomiXplorer/aomi.git
-```
-
-### Without installing anything
-
-The repository runs itself. Clone it, use `python3 -m aomi` everywhere `aomi` is
-written below:
+The checkout runs itself. Use `python3 -m aomi` wherever `aomi` is written below:
 
 ```bash
 git clone https://github.com/AomiXplorer/aomi.git
@@ -35,7 +66,9 @@ python3 -m aomi --version
 python3 -m aomi install          # still copies the skill into your agent
 ```
 
-Nothing is installed globally, and nothing outside the folder you choose is touched.
+Nothing is installed, and nothing outside the folders you name is touched. This is
+also the one route that needs no launcher at all, so it works in a container where
+`$HOME` is read-only.
 
 ## 2. Copy the skill into your agent
 
@@ -121,34 +154,54 @@ file at `SKILL.md` rather than pasting the whole skill into it. One source, one 
 
 ## Updating
 
+Update the command the way you installed it, then refresh the copies it placed:
+
 ```bash
-pipx upgrade aomi     # the command
-aomi update           # the copies of the skill
+# installed with install.py: in the clone you already have
+git pull && python3 install.py
+
+# installed with pipx
+pipx upgrade aomi
+
+# either way, then:
+aomi update                       # rewrite every installed copy of the skill
 ```
 
-Both are needed: `pipx upgrade` installs a newer command, `aomi update` writes that
+Running `install.py` again copies over the previous install, removes files the new
+version no longer ships, and prints the version it wrote, so you can see what you
+got. `aomi update` then refreshes the skill folders.
+
+Both halves matter: the installer refreshes the command, `aomi update` writes that
 version's skill files over your installed copies and prunes anything it no longer
-ships. It finds them by reading `SKILL.md`, so it works after an upgrade, from any
+ships. `aomi update` finds them by reading `SKILL.md`, so it works from any
+directory, with no state file to go stale. It finds them by reading `SKILL.md`, so it works after an upgrade, from any
 directory, with no state file to go stale.
 
 ## Removing
 
 ```bash
-aomi uninstall        # asks first; refuses any folder that is not Aomi
-pipx uninstall aomi   # the command itself
+aomi uninstall              # the skill copies; asks first, refuses foreign folders
+python3 install.py --uninstall --yes   # the command, if installed with install.py
+pipx uninstall aomi         # the command, if installed with pipx
 ```
+
+`install.py --uninstall` removes only what that installer wrote: the launcher and
+the data folder. It leaves your shell profile alone, and it will not touch a
+launcher that came from pipx.
 
 ## Termux and other small terminals
 
 No build step, no compiled dependency, no colour unless the terminal claims a real
 one, and no full-screen redraw. Everything is text and standard-library Python.
-`python3 -m aomi` works from a clone when pipx is not available, and
-`AOMI_NONINTERACTIVE=1` makes every command take its answers from flags.
+`python3 install.py` and `python3 -m aomi` both work from a clone when pipx is not
+available, and `AOMI_NONINTERACTIVE=1` makes every command take its answers from
+flags.
 
 ## When something looks wrong
 
 - `cannot find the skill files` means the package and its bundled skill tree are out
-  of step. Reinstall: `pipx install --force git+https://github.com/AomiXplorer/aomi.git`.
+  of step. Reinstall the way you installed: `python3 install.py` from a fresh clone,
+  or `pipx install --force git+https://github.com/AomiXplorer/aomi.git`.
 - `refused: ... is not an Aomi skill` means that folder holds something else. Point
   `--dir` somewhere empty, or add `--force` if you really mean to replace it.
 - An agent does not see the skill after install: confirm the path with

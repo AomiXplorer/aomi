@@ -4,11 +4,17 @@ One command, ten subcommands, standard-library Python only. This page is the
 reference; the [README](../README.md) has the three lines most people need.
 
 ```bash
-pipx install git+https://github.com/AomiXplorer/aomi.git
+# from a clone, with no pip and no root
+python3 install.py
 aomi --help
+
+# or, if pipx is there
+pipx install git+https://github.com/AomiXplorer/aomi.git && aomi --help
 ```
 
-From a checkout with no install, `python3 -m aomi` takes the same arguments.
+From a checkout with no install, `python3 -m aomi` takes the same arguments. Setup
+and uninstall live in [installation.md](installation.md); this page covers what the
+command does once it runs.
 
 ## How output behaves
 
