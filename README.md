@@ -170,7 +170,7 @@ python3 scripts/aomi.py --version
 Pasang ke agent kamu, pilih salah satu:
 
 ```bash
-# Base44 Superagent, atau agent yang membaca .agents/skills/
+# agent yang membaca folder .agents/skills/
 mkdir -p .agents/skills && cp -r . .agents/skills/aomi
 
 # Claude Code, gaya direktori skill
@@ -247,7 +247,7 @@ seharusnya jalan.
 
 | agent | status | catatan |
 | --- | --- | --- |
-| Base44 Superagent | diuji | dipasang di `.agents/skills/aomi`, dimuat dan dijalankan lewat runner skill |
+| Agent berbasis folder skill | diuji | dipasang di `.agents/skills/aomi`, dimuat dan dijalankan lewat runner skill |
 | Claude Code | format cocok, belum diuji langsung | membaca `SKILL.md` dengan frontmatter `name` dan `description`; skill pihak ketiga biasanya dipasang di `~/.claude/skills/` |
 | Cursor, Windsurf, Copilot, Codex | format cocok, belum diuji langsung | semua membaca aturan berbasis Markdown dari sebuah folder; taruh `SKILL.md` beserta direktori pendampingnya |
 | Agent lain | tergantung | yang penting: satu sumber instruksi, tanpa duplikasi per adapter |

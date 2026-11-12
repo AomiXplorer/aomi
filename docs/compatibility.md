@@ -18,7 +18,7 @@ measurements in `proof.md` then have to be produced by hand.
 
 | host | status | how it loads | notes |
 | --- | --- | --- | --- |
-| Base44 Superagent | **tested** | `.agents/skills/aomi/` with `SKILL.md` plus a `scripts/run.sh` wrapper | installed into the skill library, loaded by the skill runner, and the CLI executed from the skill folder |
+| A folder-based skill host | **tested** | `.agents/skills/aomi/` with `SKILL.md` plus a `scripts/run.sh` wrapper | installed into a real skill library, loaded by the host's skill runner, and the CLI executed from the skill folder |
 | Claude Code | format compatible, not tested here | `~/.claude/skills/aomi/` or a project `.claude/skills/aomi/` | expects `SKILL.md` with `name` and `description` in frontmatter, which Aomi has; deeper files are read on demand as relative paths |
 | Cursor | format compatible, not tested here | a rules or skill folder the host indexes | long instruction sets get truncated, which is why `SKILL.md` is the short file |
 | Windsurf | format compatible, not tested here | rules directory | same caveat as Cursor |
