@@ -64,12 +64,16 @@ Then put it where your agent looks for skills:
 
 ```bash
 # agents that read .agents/skills/
-git clone --depth 1 https://github.com/AomiXplorer/aomi.git \
-  .agents/skills/aomi && rm -rf .agents/skills/aomi/.git
+git clone --depth 1 \
+  https://github.com/AomiXplorer/aomi.git \
+  .agents/skills/aomi
+rm -rf .agents/skills/aomi/.git
 
 # Claude Code
-git clone --depth 1 https://github.com/AomiXplorer/aomi.git \
-  ~/.claude/skills/aomi && rm -rf ~/.claude/skills/aomi/.git
+git clone --depth 1 \
+  https://github.com/AomiXplorer/aomi.git \
+  ~/.claude/skills/aomi
+rm -rf ~/.claude/skills/aomi/.git
 ```
 
 Copy the whole directory, not just `SKILL.md`: it refers to files beside it.
@@ -77,19 +81,20 @@ Python is only needed for the command line. The skill itself is Markdown.
 
 ## Usage
 
-```bash
-$ python3 scripts/aomi.py init .
-aomi/ at /your/project/aomi
-  created: brief.md, decisions.md, proof.md, handoff.md, features.csv
+`init` writes `aomi/` with `brief.md`, `decisions.md`, `proof.md`,
+`handoff.md` and `features.csv`. Then the audit, on an existing project:
 
+```bash
 $ python3 scripts/aomi.py audit ./src
-SG01  w3  violet-indigo accent with no brand basis  [measured]
+SG01  w3  violet-indigo accent with no brand basis
     - landing.html: #a855f7
-SG15  w4  proof that cannot be traced  [measured]
+SG15  w4  proof that cannot be traced
     - landing.html: Trusted by 12,400
 
 penalty 7  ->  score 51/100  ->  BLOCKED
 ```
+
+One evidence line per signal here; the real output lists every hit.
 
 Five commands: `init`, `audit`, `contrast`, `parity`, `doctor`. The four that grade
 exit non-zero when they fail, so a pre-commit hook or a CI step needs no wrapper.
