@@ -1,165 +1,58 @@
-![Aomi: pahami dulu, baru bangun](assets/hero.png)
-
 <p align="center">
-  <img src="assets/logo.png" alt="Logo Aomi: dua lingkaran yang bertemu di satu titik" width="88">
+  <img src="assets/hero.png" alt="Aomi: a cream banner with the mark and the line understand first, build once, design on purpose">
 </p>
 
-# Aomi
+<p align="center">
+  <img src="assets/logo.png" width="72" alt="Aomi mark: two overlapping circles with a single dot where they meet">
+</p>
 
-**Understand first. Build once. Design on purpose.**
+<h1 align="center">Aomi</h1>
 
-`lisensi: Aomi Personal Use v1.0` · `python 3.9+` · `tanpa dependency` · `v1.0.0`
+<p align="center"><strong>Understand first. Build once. Design on purpose.</strong></p>
 
----
+<p align="center"><sub>a skill for AI agents · python 3.9+ · no dependencies · source-available</sub></p>
 
-## haii, kenalin Aomi
+Aomi is a skill for AI agents that would rather understand the job than start
+typing. It reads the task, opens only the few files that answer it, and keeps
+engineering and design in the same conversation instead of two.
 
-Aomi itu skill buat AI agent supaya nggak asal ngoding.
+One method carries from a single component fix to a product other people will
+maintain: frame the work, decide in writing, build the thinnest path, then prove
+it with tests and a design audit. The parts that can be measured are measured by a
+small command line, so "it looks fine" is not an available answer.
 
-Kebanyakan agent (dan kebanyakan manusia juga, sih) langsung buka editor begitu
-dikasih tugas. Hasilnya kelihatan cepat, tapi minggu ketiga baru ketahuan: datanya
-salah bentuk, satu layar punya dua sistem warna, dan halaman itu ternyata bisa
-ditukar logo dengan produk lain tanpa ada yang sadar.
+## Features
 
-Aomi dibalik urutannya. Pahami dulu, tulis keputusannya sekali, baru bangun. Dan
-kalau UI-nya kelihatan generik, itu dianggap bug, bukan selera.
+### Engineering
 
-Aomi bukan kumpulan file yang digabung dari mana-mana. Ini implementasi baru,
-ditulis dari nol, dengan filosofi, arsitektur, dan bahasa desainnya sendiri.
+- Recon that maps an existing product screen by screen, within what you may see.
+- Data-first architecture, with constraints in the database, not only in code.
+- View state as one value, so empty, error and denied have somewhere to go.
+- Authorisation in one place, migrations as files, secrets server side.
+- Debugging that reproduces before it edits, and a test written for each fix.
 
-## tagline, dan kenapa yang itu
+### Design
 
-Tiga calon yang sempat dipertimbangkan:
+- A written direction per project: reader, obligation, feel, and what it refuses.
+- Type and colour chosen as roles with sizes, before any hex value.
+- A Slop Gate: three tests and fifteen weighted signals, not a ban list.
+- Contrast measured against WCAG by `aomi.py contrast`, never estimated.
+- Motion with a time budget, and `prefers-reduced-motion` treated as required.
 
-1. *Think deeper. Build better. Design differently.*
-2. *Less slop, more thought.*
-3. **Understand first. Build once. Design on purpose.**
+## Workflow
 
-Yang dipilih nomor tiga, karena dia menyebut tiga hal yang memang bisa diperiksa:
-pemahaman sebelum kerja, satu kali bangun yang benar, dan desain yang punya alasan.
-Dua yang lain enak dibaca tapi tidak bisa dibuktikan.
-
-## yang bisa Aomi lakuin
-
-![The Aomi loop: tujuh fase, dua kecerdasan](assets/workflow.png)
-
-Satu loop, tujuh fase. Engineering dan design jalan bareng, bukan dua skill yang
-saling tidak tahu.
-
-- baca sebuah produk dan memetakan layar, state, alur, serta data yang tersirat
-- merancang skema data, batas kepercayaan, auth, dan jalur kegagalannya
-- membangun frontend dan backend, termasuk semua state yang bikin panik
-- memilih arah desain: tipografi, warna, layout, komponen, motion
-- mengaudit UI dengan tiga tes, bukan daftar larangan
-- menguji, mengukur, dan memutuskan boleh rilis atau belum
-
-## fitur utama
-
-**Loop yang menyesuaikan skala.** Ada tiga level: *Sketch* (satu komponen, satu
-perbaikan), *Build* (satu fitur atau satu alur), *Product* (beberapa permukaan,
-pengguna nyata). Levelnya ditulis di `brief.md`, jadi kelihatan berapa banyak
-proses yang dijanjikan, dan tidak ada yang diam-diam menjalankan proses besar
-untuk tugas kecil.
-
-**Satu catatan keputusan.** Arsitektur dan arah desain hidup di file yang sama,
-`decisions.md`. Tiap keputusan punya alasan dan menyebut pilihan yang kalah. Kalau
-sebuah keputusan tidak punya alternatif, itu bukan keputusan, itu default.
-
-**Slop Gate.** Tiga tes yang menjaga UI dari hasil "AI banget": Swap Test,
-Derivation Test, dan signal sweep yang diukur oleh tool. Bukan daftar larangan
-hitam-putih, karena ungu itu salah kalau bukan brand kamu dan benar kalau iya.
-
-**Bukti, bukan keyakinan.** Skor paritas fitur, rasio kontras WCAG, hasil tes, dan
-skor audit masuk ke `proof.md`. Bagian yang belum diuji juga ditulis di situ.
-
-**Aturan yang bisa dijalankan.** Empat dari lima perintah di bawah adalah gate:
-keluar dengan status non-nol kalau gagal, jadi bisa dipasang di pre-commit atau CI.
-
-## Engineering Intelligence
-
-Bagian yang menjawab *apakah ini akan tahan?*
-
-- **Recon** untuk produk yang sudah ada: inventaris layar bertanda S01, alur
-  F01 dengan jumlah langkah dan jumlah field, data yang disimpulkan, matriks
-  fitur `must/should/could`. Sumber publik dan akun sendiri, dibaca dengan
-  kecepatan manusia, tanpa menyentuh source code atau endpoint privat.
-- **Arsitektur**: data dulu, lalu batas, lalu jalur, lalu mode kegagalan, baru
-  operability. Constraint di database, bukan cuma di kode. Idempotency untuk
-  semua yang bisa diulang.
-- **Frontend**: state sebagai satu nilai diskriminatif, bukan lima boolean.
-  Urutan bangun: shell, jalur tertipis, layar beserta seluruh state-nya, baru
-  interaksi.
-- **Backend**: otorisasi per record dalam satu fungsi, migrasi sebagai file,
-  rahasia hanya di server, penghapusan akun yang benar-benar menghapus.
-- **Quality**: reproduksi dulu, bisect permukaan, baca nilai aslinya, perbaiki
-  penyebabnya sekali, lalu tulis tes yang seharusnya menangkapnya.
-- **Testing**: aturan produk dulu, jalur pengguna, state yang tidak pernah
-  diklik, batas. Bukti ditulis, termasuk yang tidak diuji.
-- **Ship**: preflight yang dijalankan semua, rollback yang ditentukan sebelum
-  deploy, dan kata "go" yang eksplisit dari pemilik produk.
-
-## Design Intelligence
-
-Bagian yang menjawab *apakah ini akan dipahami?*
-
-- **Arah desain** ditulis dalam empat kalimat: siapa pembacanya dan di mana,
-  apa yang harus paling jelas, terasa seperti apa (perbandingan, bukan kata
-  sifat), dan sengaja bukan apa.
-- **Tipografi**: enam peran dengan ukuran dan tugasnya, satu skala modular,
-  maksimal tiga bobot, measure 60 sampai 75 karakter.
-- **Warna**: sembilan peran, distribusi 60/30/10 sebelum memilih hex, kontras
-  sebagai gate, dan dark mode sebagai palet kedua bukan hasil inversi.
-- **Layout**: satu elemen dominan per area, ritme yang sengaja tidak rata, satu
-  tempat yang sengaja keluar grid.
-- **Komponen**: inventaris dulu (biasanya 8 sampai 12, bukan 40), lalu daftar
-  state per komponen, radius dan elevasi sebagai skala yang menyatakan hierarki.
-- **Interaction**: motion itu umpan balik atau noise, dengan anggaran waktu dan
-  `prefers-reduced-motion` yang wajib.
-- **Accessibility**: gate yang bisa dijawab dengan bukti, plus cara mengujinya
-  sungguhan (keyboard, zoom 200 persen, screen reader).
-
-## cara kerjanya
-
-Tujuh fase, masing-masing meninggalkan satu artifact yang dibaca fase berikutnya.
-
-| fase | yang dikerjakan | hasil |
-| --- | --- | --- |
-| Frame | apa yang dibangun, untuk siapa, level kedalaman, apa yang di luar scope | `brief.md` |
-| Read | peta produk dan matriks fitur | `map.md`, `features.csv` |
-| Decide | arsitektur dan arah desain dalam satu catatan | `decisions.md` |
-| Make | jalur tertipis dulu, lalu shell, lalu tiap layar beserta state-nya | implementasi |
-| Prove | tes fungsional dan audit desain, dua-duanya | `proof.md` |
-| Polish | perbaiki sesuai dampak, catat keputusan yang seharusnya mencegahnya | perbaikan |
-| Sign | verifikasi akhir dan keputusan go / no-go | `handoff.md` |
-
-Sepuluh langkah penuh (pahami, analisis, riset, rencana, arah desain, bangun,
-tes, audit, refine, verifikasi) dipetakan ke tujuh fase ini. Pemetaannya ada di
-`core/workflow.md`.
-
-## arsitektur
-
-Intinya satu file rute, sisanya dimuat sesuai kebutuhan.
-
-```text
-SKILL.md          rute tugas, aturan yang tidak bisa dilanggar, perintah tool
-core/             filosofi, loop, dan cara memilih kedalaman
-engineering/      recon, arsitektur, frontend, backend, quality, testing, ship
-design/           arah, tipografi, warna, layout, komponen, interaksi, aksesibilitas, Slop Gate
-references/       pasangan font, palet dengan rasio kontras terukur, catatan per stack
-templates/        kerangka artifact yang diisi saat kerja
-scripts/          aomi.py dan build_assets.py, dua-duanya standard library
-tests/            tes CLI, fixture bersih dan fixture penuh slop, skenario
-docs/             provenance, kompatibilitas, bahasa visual
+```
+Frame → Read → Decide → Make → Prove → Polish → Sign
 ```
 
-Kenapa dipisah begitu: instruksi memakan context window. Skill yang harus dibaca
-seluruhnya sebelum mulai akan dibaca sekilas. Jadi `SKILL.md` memilih file, dan
-agent hanya membuka yang relevan. Tidak ada instruksi yang ditulis dua kali.
+Each phase leaves one artifact and the next phase reads it. Depth is declared up
+front, so a small fix does not quietly become a full engagement: **Sketch** for
+one component or one question, **Build** for a feature or a flow, **Product** for
+several surfaces and real users.
 
-## instalasi
+Phases, artifacts and the ten-step mapping: [docs/workflow.md](docs/workflow.md).
 
-Tanpa dependency. Cukup Python 3.9 atau lebih baru untuk tool-nya; skill-nya
-sendiri hanya file Markdown.
+## Installation
 
 ```bash
 git clone https://github.com/AomiXplorer/aomi.git
@@ -167,35 +60,28 @@ cd aomi
 python3 scripts/aomi.py --version
 ```
 
-Pasang ke agent kamu, pilih salah satu:
+Then put it where your agent looks for skills:
 
 ```bash
-# agent yang membaca folder .agents/skills/
-mkdir -p .agents/skills && cp -r . .agents/skills/aomi
+# agents that read .agents/skills/
+git clone --depth 1 https://github.com/AomiXplorer/aomi.git \
+  .agents/skills/aomi && rm -rf .agents/skills/aomi/.git
 
-# Claude Code, gaya direktori skill
-mkdir -p ~/.claude/skills && cp -r . ~/.claude/skills/aomi
-
-# Cursor / Windsurf / Copilot / Codex: taruh SKILL.md di root rule atau
-# instructions folder yang mereka baca, lalu biarkan file lain di sebelahnya
-cp SKILL.md /path/ke/project-rules/aomi.md
+# Claude Code
+git clone --depth 1 https://github.com/AomiXplorer/aomi.git \
+  ~/.claude/skills/aomi && rm -rf ~/.claude/skills/aomi/.git
 ```
 
-Untuk opsi terakhir, salin seluruh direktori, bukan hanya `SKILL.md`, karena
-`SKILL.md` merujuk file di `core/`, `design/`, dan seterusnya.
+Copy the whole directory, not just `SKILL.md`: it refers to files beside it.
+Python is only needed for the command line. The skill itself is Markdown.
 
-## contoh pakai
-
-Mulai sebuah project kecil:
+## Usage
 
 ```bash
-python3 scripts/aomi.py init .
-# aomi/brief.md, decisions.md, proof.md, features.csv
-```
+$ python3 scripts/aomi.py init .
+aomi/ at /your/project/aomi
+  created: brief.md, decisions.md, proof.md, handoff.md, features.csv
 
-Audit UI yang sudah ada:
-
-```bash
 $ python3 scripts/aomi.py audit ./src
 SG01  w3  violet-indigo accent with no brand basis  [measured]
     - landing.html: #a855f7
@@ -205,152 +91,73 @@ SG15  w4  proof that cannot be traced  [measured]
 penalty 7  ->  score 51/100  ->  BLOCKED
 ```
 
-Kalau ungunya memang brand, tulis alasannya, dan skornya berubah:
-
-```json
-// aomi/overrides.json
-[{ "signal": "SG01", "reason": "brand",
-   "note": "Logo dan materi cetak memakai #6D4AA6, antarmuka mengikutinya." }]
-```
-
-Cek kontras sebelum menyesal:
+Five commands: `init`, `audit`, `contrast`, `parity`, `doctor`. The four that grade
+exit non-zero when they fail, so a pre-commit hook or a CI step needs no wrapper.
+Every one of them takes `--json`.
 
 ```bash
 $ python3 scripts/aomi.py contrast aomi/tokens.json
 pass    14.85    4.5  body on ground
 FAIL     1.96    4.5  faint on ground
+
 4 pairs, 1 failing
 ```
 
-Skor paritas fitur, dan apakah boleh rilis:
+If an accent is genuinely the brand, say so rather than fight the score:
 
-```bash
-$ python3 scripts/aomi.py parity aomi/features.csv
-Parity 50.0/100   (5 features)
-must-haves: 1/2
-
-Not shippable yet:
-  - booking: Time zone detection (partial)
+```json
+[{ "signal": "SG01", "reason": "brand",
+   "note": "Print and logo use #6D4AA6." }]
 ```
 
-Kesehatan repo dan referensinya:
+That goes in `aomi/overrides.json`. Only five reasons are accepted: `brand`,
+`content`, `accessibility`, `hardware`, `legacy`.
 
-```bash
-$ python3 scripts/aomi.py doctor
-0 errors, 0 warnings
-```
+## Compatibility
 
-## agent yang didukung
+- **Tested:** an agent whose skill loader reads `.agents/skills/`. Installed,
+  loaded by its runner, and the command line executed from the skill folder.
+- **Format-compatible, not run here:** Claude Code, Cursor, Windsurf, Copilot,
+  Codex. Each reads Markdown skill or rule files, which Aomi satisfies. Nothing
+  beyond that is claimed.
+- **Anything else:** the frontmatter is the only hard requirement.
 
-Statusnya dibedakan dengan jelas: apa yang sudah diuji, dan apa yang secara format
-seharusnya jalan.
+The full table, the caveats and the wrapper for script runners are in
+[docs/compatibility.md](docs/compatibility.md).
 
-| agent | status | catatan |
-| --- | --- | --- |
-| Agent berbasis folder skill | diuji | dipasang di `.agents/skills/aomi`, dimuat dan dijalankan lewat runner skill |
-| Claude Code | format cocok, belum diuji langsung | membaca `SKILL.md` dengan frontmatter `name` dan `description`; skill pihak ketiga biasanya dipasang di `~/.claude/skills/` |
-| Cursor, Windsurf, Copilot, Codex | format cocok, belum diuji langsung | semua membaca aturan berbasis Markdown dari sebuah folder; taruh `SKILL.md` beserta direktori pendampingnya |
-| Agent lain | tergantung | yang penting: satu sumber instruksi, tanpa duplikasi per adapter |
+## Documentation
 
-Satu sumber instruksi dipertahankan untuk semua adapter, supaya tidak ada dua
-perilaku yang bertentangan hanya karena beda agent. Detail dan batasan ada di
-`docs/compatibility.md`.
+- [Architecture](docs/architecture.md): how the skill is split, and why
+- [Workflow](docs/workflow.md): seven phases, three depths, the artifacts
+- [Engineering](docs/engineering.md): recon, architecture, frontend, backend,
+  quality, testing, ship
+- [Design](docs/design.md): direction, type, colour, layout, the Slop Gate
+- [Compatibility](docs/compatibility.md): hosts tested, hosts assumed, and what
+  that means
+- [Provenance](docs/provenance.md): the origin of every part, checked by a command
+- [Design language](docs/design-language.md): the project's own mark, palette and
+  voice
 
-## struktur project
+## License
 
-```text
-aomi/
-├── SKILL.md                    rute utama, ~140 baris
-├── core/
-│   ├── philosophy.md           enam prinsip
-│   ├── workflow.md             tujuh fase, pemetaan sepuluh langkah
-│   └── depth.md                Sketch, Build, Product, dan tanda salah pilih level
-├── engineering/
-│   ├── recon.md                observasi yang sah, peta produk, matriks fitur
-│   ├── architecture.md         data, batas, jalur, mode kegagalan
-│   ├── frontend.md             shell, state, data, form, performa
-│   ├── backend.md              aturan yang tetap benar, skema, auth, job
-│   ├── quality.md              debugging, review, performa, kapan refactor
-│   ├── testing.md              apa yang diuji, cara menulisnya, bukti
-│   └── ship.md                 preflight, environment, rollback
-├── design/
-│   ├── direction.md            empat kalimat, tiga daftar, enam arketipe
-│   ├── typography.md           peran, skala, measure, angka
-│   ├── color.md                peran, rampa, kontras, dark mode
-│   ├── layout.md               skeleton, elemen dominan, ritme, responsif
-│   ├── components.md           inventaris, state, skala radius dan elevasi
-│   ├── interaction.md          anggaran motion, umpan balik, fokus
-│   ├── accessibility.md        gate, cara uji, pola gagal
-│   └── slop-gate.md            tiga tes dan lima belas signal
-├── references/
-│   ├── type-pairings.md        sembilan pasangan font berlisensi terbuka
-│   ├── palettes.md             enam palet, rasio kontras terukur
-│   └── stack-notes.md          terjemahan aturan ke Tailwind, React, platform
-├── templates/                  brief, map, decisions, proof, features.csv
-├── scripts/
-│   ├── aomi.py                 init, audit, contrast, parity, doctor
-│   └── build_assets.py         bangun ulang aset dari sumber SVG
-├── tests/
-│   ├── test_aomi.py            tes CLI, termasuk kesesuaian bobot dokumen dan kode
-│   ├── scenarios.md            tiga skenario uji end to end
-│   └── fixtures/               halaman bersih, halaman penuh slop
-├── docs/
-│   ├── provenance.md           audit asal-usul tiap komponen
-│   ├── compatibility.md        adapter dan batasannya
-│   └── design-language.md      identitas visual Aomi
-├── assets/                     logo, hero, diagram workflow
-├── LICENSE
-└── README.md
-```
+Aomi ships under the **Aomi Personal Use License v1.0**. Read it, learn from it, use
+it for personal work. Commercial use needs written permission, redistribution and
+resale do not happen without it, and attribution stays. It is source-available, not
+an OSI open-source license, and the text says plainly where it is not legal advice.
 
-## konfigurasi
+The terms are in [LICENSE](LICENSE).
 
-Tidak ada file konfigurasi wajib. Yang opsional, dan efeknya:
+## Credits
 
-| file | untuk apa | kalau tidak ada |
-| --- | --- | --- |
-| `aomi/overrides.json` | menerima sinyal Slop Gate tertentu dengan alasan | semua sinyal dihitung apa adanya |
-| `aomi/tokens.json` | token warna dan pasangan teks yang dicek kontrasnya | `aomi.py contrast` tidak dijalankan |
-| `aomi/features.csv` | kontrak scope dan skor paritas | `aomi.py parity` tidak dijalankan |
+Aomi was written from scratch after studying two public skill collections: one
+about rebuilding an existing app, one about anti-slop interface work. They shaped
+how the problem was framed and nothing else. No file, paragraph, asset or line of
+code from either appears here, and [docs/provenance.md](docs/provenance.md) records
+file by file, and `aomi.py doctor` checks the trail.
 
-`aomi/overrides.json` hanya menerima lima alasan: `brand`, `content`,
-`accessibility`, `hardware`, `legacy`. Alasan lain diabaikan, dan laporannya bilang
-diabaikan. Tujuannya bukan melarang warnanya, tapi memaksa kalimat yang menjelaskan
-kenapa.
+Hero artwork was generated with an image model and composed with typography in SVG;
+the mark and the workflow diagram were drawn as SVG in `assets/`. Text inside every
+asset is rendered rather than painted, so the spelling is exact.
 
-## lisensi
-
-**AOMI PERSONAL USE LICENSE v1.0.** Boleh dilihat, dipelajari, dan dipakai untuk
-kebutuhan pribadi. Penggunaan komersial butuh izin tertulis. Redistribusi dan
-penjualan ulang tidak diperbolehkan tanpa izin. Atribusi ke Aomi tidak boleh
-dihapus, dan brand Aomi tidak boleh dipakai untuk mengklaim karya ini sebagai
-milik sendiri.
-
-Ini lisensi *source-available* buatan sendiri, bukan lisensi open source dan tidak
-disetujui OSI. Teks lengkapnya ada di [LICENSE](LICENSE), termasuk bagian yang
-jujur bilang bahwa dokumen ini bukan nasihat hukum dan belum diuji di pengadilan.
-
-## credits
-
-Terima kasih untuk dua kumpulan skill publik yang jadi bahan belajar soal cara
-orang membangun alur kerja untuk agent: koleksi skill replikasi aplikasi, dan
-koleksi skill anti-slop UI. Keduanya dipelajari sebagai referensi cara berpikir,
-lalu Aomi ditulis ulang dari nol dengan struktur, istilah, dan sistemnya sendiri.
-
-Tidak ada file, paragraf, aset, atau kode dari keduanya yang disalin ke sini. Kalau
-kamu ingin memeriksa klaim itu, `docs/provenance.md` mencatat asal setiap bagian,
-dan `python3 scripts/aomi.py doctor` memeriksa jejaknya.
-
-Font dan aset: hero memakai artwork yang dibuat dengan model gambar, sedangkan
-logo dan diagram workflow dirancang sebagai SVG di `assets/`. Teks di dalam aset
-dirender lewat SVG supaya ejaannya pasti benar.
-
-## penulis dan maintainer
-
-**Aomi** · [github.com/AomiXplorer](https://github.com/AomiXplorer)
-
-Dibuat karena capek lihat kode yang jalan tapi tidak dipikirkan, dan UI yang rapi
-tapi tidak berarti apa-apa.
-
-Kalau kamu menemukan sesuatu yang salah, buka issue. Kalau kamu menemukan Aomi
-dipakai untuk sesuatu yang dilisensinya tidak izinkan, kabari juga.
+Maintained by Aomi ([@AomiXplorer](https://github.com/AomiXplorer)). Bug reports and
+questions are welcome in the issue tracker.
