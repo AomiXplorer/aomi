@@ -126,6 +126,10 @@ def install(adapter: Adapter, target: pathlib.Path, dry_run: bool = False,
         dest = target / rel
         dest.parent.mkdir(parents=True, exist_ok=True)
         shutil.copyfile(src, dest)
+        shutil.copymode(src, dest)
+        if dest.suffix == ".sh":
+            # a wheel does not carry the mode bit, so set it here instead
+            dest.chmod(dest.stat().st_mode | 0o111)
 
     # prune files this version no longer ships, inside the folders we manage
     keep = {rel for rel, _ in files}

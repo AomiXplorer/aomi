@@ -13,6 +13,7 @@ here="$(cd "$(dirname "$0")/.." && pwd)"
 if [ -f "$here/aomi/cli.py" ]; then
   exec python3 -m aomi "${ARGS[@]}"
 fi
-echo "aomi: no aomi command on PATH and no package beside this wrapper." >&2
-echo "  install it with: pipx install git+https://github.com/AomiXplorer/aomi.git" >&2
+echo "aomi: the aomi command is not on PATH." >&2
+echo "  add the pipx bin directory (pipx ensurepath, then a new shell), or install:" >&2
+echo "    pipx install git+https://github.com/AomiXplorer/aomi.git" >&2
 exit 2

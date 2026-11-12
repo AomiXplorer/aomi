@@ -7,6 +7,7 @@ from __future__ import annotations
 
 import io
 import json
+import os
 import pathlib
 import re
 import sys
@@ -134,6 +135,16 @@ class InstallTest(unittest.TestCase):
         self.assertNotIn("pyproject.toml", rel)
         self.assertNotIn("setup.py", rel)
         self.assertNotIn("aomi/cli.py", rel)
+
+    def test_the_run_wrapper_stays_executable(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            cwd, home = pathlib.Path(tmp), pathlib.Path(tmp) / "home"
+            home.mkdir()
+            target = adapters.BY_KEY["agents"].path_for("project", cwd, home)
+            installer.install(adapters.BY_KEY["agents"], target)
+            wrapper = target / "scripts" / "run.sh"
+            self.assertTrue(wrapper.is_file())
+            self.assertTrue(os.access(wrapper, os.X_OK), "a runner may exec the wrapper directly")
 
     def test_install_twice_updates_in_place_without_nesting(self):
         with tempfile.TemporaryDirectory() as tmp:
