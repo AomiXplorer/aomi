@@ -41,9 +41,7 @@ small command line, so "it looks fine" is not an available answer.
 
 ## Workflow
 
-```
-Frame → Read → Decide → Make → Prove → Polish → Sign
-```
+**Frame** → **Read** → **Decide** → **Make** → **Prove** → **Polish** → **Sign**
 
 Each phase leaves one artifact and the next phase reads it. Depth is declared up
 front, so a small fix does not quietly become a full engagement: **Sketch** for
@@ -101,7 +99,8 @@ exit non-zero when they fail, so a pre-commit hook or a CI step needs no wrapper
 Every one of them takes `--json`.
 
 ```bash
-$ python3 scripts/aomi.py contrast aomi/tokens.json
+$ python3 scripts/aomi.py contrast \
+    aomi/tokens.json
 pass    14.85    4.5  body on ground
 FAIL     1.96    4.5  faint on ground
 
