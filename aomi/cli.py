@@ -196,6 +196,9 @@ def command_install(args) -> int:
         print("  or `aomi install --list` to see where each one reads skills.", file=sys.stderr)
         return 2
 
+    if not adapter and args.dir:
+        adapter = adapters.for_directory(pathlib.Path(args.dir).expanduser())
+
     if not adapter:
         if not (ui.is_interactive() and not args.yes):
             print("install: no --agent given and no terminal to ask on.", file=sys.stderr)

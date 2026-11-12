@@ -213,6 +213,14 @@ class InstallTest(unittest.TestCase):
             self.assertEqual(installer.uninstall(foreign)["action"], "refused")
             self.assertTrue(foreign.exists())
 
+    def test_a_directory_needs_no_agent_name(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            target = pathlib.Path(tmp) / "somewhere" / "aomi"
+            code, out, err = run(["install", "--dir", str(target), "--yes"])
+            self.assertEqual(code, 0, err or out)
+            self.assertIn("your agent", out)
+            self.assertTrue((target / "SKILL.md").is_file())
+
     def test_custom_directory_install(self):
         with tempfile.TemporaryDirectory() as tmp:
             target = pathlib.Path(tmp) / "anywhere" / "aomi"

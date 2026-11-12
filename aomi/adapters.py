@@ -37,6 +37,19 @@ class Adapter:
         return f"project: {self.project}"
 
 
+def for_directory(target: pathlib.Path) -> Adapter:
+    """A stand-in adapter for `--dir`: the folder is given, so the agent is unknown."""
+    return Adapter(
+        key="custom",
+        label="your agent",
+        project=str(target),
+        global_path=None,
+        docs="",
+        verified=False,
+        note="a folder you chose; `aomi` does not know where this agent reads skills",
+    )
+
+
 ADAPTERS: tuple[Adapter, ...] = (
     Adapter(
         key="claude",
