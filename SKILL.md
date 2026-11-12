@@ -12,7 +12,7 @@ description: >-
   request where code and interface quality both matter.
 argument-hint: [what you are building or fixing]
 metadata:
-  version: 1.0.0
+  version: 1.1.0
   author: Aomi
   license: AOMI-PUL-1.0
 ---
@@ -86,19 +86,21 @@ aomi/proof.md      what was tested, what passed, what was not tested, audit scor
 aomi/handoff.md    preflight results and the go / no-go call
 ```
 
-Scaffold them with `python3 scripts/aomi.py init`. Keep them current, or delete
+Scaffold them with `aomi init`. Keep them current, or delete
 the one that has no reader.
 
 ## Tools
 
-All standard-library Python. Run from the skill directory, pointing at the project.
+All standard-library Python, no network. `aomi` is installed once with pipx; from
+a checkout `python3 -m aomi` is the same command.
 
 ```bash
-python3 scripts/aomi.py init [dir]                 # scaffold aomi/ artifacts
-python3 scripts/aomi.py audit <dir> [--json]       # Slop Gate signal sweep
-python3 scripts/aomi.py contrast aomi/tokens.json  # WCAG ratios for text pairs
-python3 scripts/aomi.py parity aomi/features.csv   # weighted completion score
-python3 scripts/aomi.py doctor [--root .]          # structure, links, assets, provenance
+aomi init [dir]                 # scaffold the artifacts this depth needs
+aomi audit <dir> [--json]       # Slop Gate signal sweep
+aomi contrast aomi/tokens.json  # WCAG ratios for text pairs
+aomi parity aomi/features.csv   # weighted completion score
+aomi doctor [--root .]          # structure, links, assets, provenance
+aomi config                     # tokens, waivers, features, without a spec
 ```
 
 `audit` reports measured signals and heuristic ones separately. Heuristic findings

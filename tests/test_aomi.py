@@ -20,34 +20,28 @@ ROOT = HERE.parent
 FIXTURES = HERE / "fixtures"
 
 
-def load_cli():
-    spec = importlib.util.spec_from_file_location("aomi_cli", ROOT / "scripts" / "aomi.py")
-    module = importlib.util.module_from_spec(spec)
-    assert spec.loader is not None
-    spec.loader.exec_module(module)
-    return module
-
-
-cli = load_cli()
+sys.path.insert(0, str(ROOT))
+from aomi import cli as cli_module  # noqa: E402
+from aomi import engine  # noqa: E402
 
 
 def run(argv):
     """Run a command, returning (exit code, stdout)."""
     buffer = io.StringIO()
     with redirect_stdout(buffer):
-        code = cli.main(argv)
+        code = cli_module.main(argv)
     return code, buffer.getvalue()
 
 
 class ContrastTest(unittest.TestCase):
     def test_black_on_white_is_twenty_one(self):
-        self.assertEqual(cli.contrast("#000000", "#ffffff"), 21.0)
+        self.assertEqual(engine.contrast("#000000", "#ffffff"), 21.0)
 
     def test_identical_colours_are_one(self):
-        self.assertEqual(cli.contrast("#3366cc", "#3366CC"), 1.0)
+        self.assertEqual(engine.contrast("#3366cc", "#3366CC"), 1.0)
 
     def test_short_hex_is_expanded(self):
-        self.assertEqual(cli.contrast("#000", "#fff"), 21.0)
+        self.assertEqual(engine.contrast("#000", "#fff"), 21.0)
 
     def test_declared_pairs_report_failures(self):
         code, out = run(["contrast", str(FIXTURES / "tokens.json")])
@@ -57,8 +51,8 @@ class ContrastTest(unittest.TestCase):
 
     def test_named_tokens_resolve(self):
         doc = json.loads((FIXTURES / "tokens.json").read_text())
-        self.assertEqual(cli.resolve("ground", doc), "#F7F4EE")
-        self.assertEqual(cli.resolve("#FFFFFF", doc), "#FFFFFF")
+        self.assertEqual(engine.resolve("ground", doc), "#F7F4EE")
+        self.assertEqual(engine.resolve("#FFFFFF", doc), "#FFFFFF")
 
     def test_missing_pairs_and_no_ground_returns_two(self):
         with tempfile.TemporaryDirectory() as tmp:
@@ -69,7 +63,7 @@ class ContrastTest(unittest.TestCase):
 
     def test_auto_pairing_uses_the_ground_role(self):
         doc = {"ground": "#FFFFFF", "ink": "#111111", "ink-muted": "#555555"}
-        pairs = cli.collect_pairs(doc)
+        pairs = engine.collect_pairs(doc)
         self.assertEqual({p["bg"] for p in pairs}, {"ground"})
         self.assertEqual(len(pairs), 2)
 
@@ -215,12 +209,8 @@ class DocumentedWeightsTest(unittest.TestCase):
             m.group(1): int(m.group(2))
             for m in __import__("re").finditer(r"\| (SG\d\d) \|[^|]*\| (\d) \|", doc)
         }
-        implemented = {}
-        source = (ROOT / "scripts" / "aomi.py").read_text()
-        for m in __import__("re").finditer(
-            r'"(SG\d\d)": Signal\("(?:SG\d\d)", (\d),', source
-        ):
-            implemented[m.group(1)] = int(m.group(2))
+        implemented = {sid: weight for sid, (weight, _title, _measured)
+                       in engine.SIGNALS.items()}
         self.assertEqual(documented, implemented)
 
 

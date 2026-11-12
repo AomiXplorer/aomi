@@ -27,7 +27,8 @@ SKILL.md            the router: task table, non-negotiables, tool commands
 | `design/` | direction, typography, colour, layout, components, interaction, accessibility, slop gate | the task has a surface |
 | `references/` | font pairings, palettes with measured contrast, stack notes | a specific choice is being made |
 | `templates/` | the artifact skeletons | writing an artifact |
-| `scripts/` | the command line and the asset build | measuring something |
+| `aomi/` | the command line: a package, installable, one module per job | running a command |
+| `scripts/` | the asset build, and a shim kept for old invocations | rebuilding assets |
 | `tests/` | the suite, fixtures, scenarios | changing the tool |
 
 Each file owns one subject and links to its neighbours rather than restating
@@ -53,22 +54,44 @@ the tool being installed.
 
 ## The command line
 
-One file, `scripts/aomi.py`, standard library only.
+A package, standard library only, installed with pipx as `aomi`. The same code runs
+from a checkout as `python3 -m aomi`, so nothing about the skill requires an
+install.
+
+| module | holds |
+| --- | --- |
+| `aomi/cli.py` | the parser, the dispatch, the exit codes |
+| `aomi/engine.py` | the measurements: signals, colour maths, parity, links |
+| `aomi/installer.py` | copy, update, prune, verify an installed skill |
+| `aomi/adapters.py` | one entry per agent: its paths and where they came from |
+| `aomi/initcmd.py`, `aomi/configcmd.py` | the two wizards |
+| `aomi/paths.py` | where the skill files are, in a checkout or a wheel |
+| `aomi/ui.py` | colour when the terminal supports it, plain text otherwise |
 
 | command | grades something | exit code |
 | --- | --- | --- |
+| `install` | copies the skill into an agent's folder | 2 on a refused folder |
+| `update` | refreshes installed copies | 2 when nothing is installed |
+| `uninstall` | removes installed copies | 2 on a folder that is not Aomi |
 | `init` | scaffolds `aomi/` | 0 |
 | `audit` | Slop Gate signal sweep | 1 when below 70 |
 | `contrast` | WCAG ratios for declared pairs | 1 on any failing pair |
 | `parity` | weighted feature completion | 1 when a `must` is unfinished |
 | `doctor` | the skill's own structure and links | 1 on any error |
+| `config` | writes and validates the optional files | 1 on an invalid value |
 
 Anything that grades exits non-zero, so it can be used as a gate in a pre-commit
 hook or a CI step without wrapping it. `--json` is available on every grading
-command for the same reason.
+command for the same reason. `docs/cli.md` is the full reference.
+
+The skill files and the command line ship together: `setup.py` copies `SKILL.md`,
+`core/`, `engineering/`, `design/`, `references/`, `templates/`, `docs/`, `assets/`
+and `LICENSE` into the wheel at build time, so an installed `aomi install` carries
+the same tree a checkout has. Nothing is duplicated in git.
 
 `scripts/build_assets.py` is separate: it rasterises the SVG sources in `assets/`
-and is not part of the skill's behaviour.
+and is not part of the skill's behaviour. `scripts/aomi.py` is a small shim so an old
+`python3 scripts/aomi.py ...` line in someone's script keeps working.
 
 ## Optional configuration
 
@@ -96,7 +119,7 @@ If the new file would restate an existing one, it is a section, not a file.
 
 - A single long instruction file, because it will be skimmed.
 - Two files that both claim to define the workflow.
-- A rule enforced by documentation but not by `scripts/aomi.py`. The weights in
+- A rule enforced by documentation but not by `aomi/engine.py`. The weights in
   `design/slop-gate.md` are read by a test that fails when the code and the
   document disagree.
 - Generated artifacts committed back into the skill. The skill holds instructions

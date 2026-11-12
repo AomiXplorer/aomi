@@ -52,85 +52,63 @@ Phases, artifacts and the ten-step mapping: [docs/workflow.md](docs/workflow.md)
 
 ## Installation
 
-```bash
-git clone https://github.com/AomiXplorer/aomi.git
-cd aomi
-python3 scripts/aomi.py --version
-```
-
-Then put it where your agent looks for skills:
+Three lines: install the command, let it place the skill where your agent reads it,
+then look at what it can do.
 
 ```bash
-# agents that read .agents/skills/
-git clone --depth 1 \
-  https://github.com/AomiXplorer/aomi.git \
-  .agents/skills/aomi
-rm -rf .agents/skills/aomi/.git
-
-# Claude Code
-git clone --depth 1 \
-  https://github.com/AomiXplorer/aomi.git \
-  ~/.claude/skills/aomi
-rm -rf ~/.claude/skills/aomi/.git
+pipx install git+https://github.com/AomiXplorer/aomi.git
+aomi install
+aomi --help
 ```
 
-Copy the whole directory, not just `SKILL.md`: it refers to files beside it.
-Python is only needed for the command line. The skill itself is Markdown.
+`aomi install` detects your agent, offers a short list, copies the runtime files and
+verifies the copy. `--agent claude`, `--global` and `--dir PATH` skip the questions.
+No pipx? `python3 -m aomi` runs the same commands straight from a checkout.
+
+Every agent's folder, the manual route and Termux notes:
+[docs/installation.md](docs/installation.md).
 
 ## Usage
 
-`init` writes `aomi/` with `brief.md`, `decisions.md`, `proof.md`,
-`handoff.md` and `features.csv`. Then the audit, on an existing project:
+Start a project, then measure it.
 
 ```bash
-$ python3 scripts/aomi.py audit ./src
-SG01  w3  violet-indigo accent with no brand basis
-    - landing.html: #a855f7
-SG15  w4  proof that cannot be traced
-    - landing.html: Trusted by 12,400
-
-penalty 7  ->  score 51/100  ->  BLOCKED
+aomi init            # three questions: name, depth, artifacts
+aomi audit ./src
 ```
 
-One evidence line per signal here; the real output lists every hit.
+```
+Aomi design audit   ./src
 
-Five commands: `init`, `audit`, `contrast`, `parity`, `doctor`. The four that grade
-exit non-zero when they fail, so a pre-commit hook or a CI step needs no wrapper.
-Every one of them takes `--json`.
-
-```bash
-$ python3 scripts/aomi.py contrast \
-    aomi/tokens.json
-pass    14.85    4.5  body on ground
-FAIL     1.96    4.5  faint on ground
-
-4 pairs, 1 failing
+  files scanned   24
+  issues found    2   critical 0, warning 1, info 1
+  score           86/100
+  status          CLEAR
 ```
 
-If an accent is genuinely the brand, say so rather than fight the score:
+`init` writes only what the depth needs: nothing for a sketch, four files for a
+build, six for a product. `audit` names the file, the evidence and a fix for each
+finding, and exits non-zero under 70.
 
-```json
-[{ "signal": "SG01", "reason": "brand",
-   "note": "Print and logo use #6D4AA6." }]
-```
-
-That goes in `aomi/overrides.json`. Only five reasons are accepted: `brand`,
-`content`, `accessibility`, `hardware`, `legacy`.
+Also `contrast` for WCAG ratios, `parity` for feature coverage, `doctor` for the
+skill's own structure, `config` for brand colours and waivers. Flags, exit codes and
+scripted use: [docs/cli.md](docs/cli.md).
 
 ## Compatibility
 
-- **Tested:** an agent whose skill loader reads `.agents/skills/`. Installed,
-  loaded by its runner, and the command line executed from the skill folder.
-- **Format-compatible, not run here:** Claude Code, Cursor, Windsurf, Copilot,
-  Codex. Each reads Markdown skill or rule files, which Aomi satisfies. Nothing
-  beyond that is claimed.
+- **Documented and verified by the installer:** Claude Code, OpenCode, Cursor,
+  Windsurf. `aomi install --list` prints each path and where it came from.
+- **Documented, not run inside that agent:** GitHub Copilot, Codex. The path follows
+  their documentation; it may differ on your version. `--dir` covers the gap.
+- **Tested end to end:** an agent whose loader reads `.agents/skills/`.
 - **Anything else:** the frontmatter is the only hard requirement.
 
-The full table, the caveats and the wrapper for script runners are in
-[docs/compatibility.md](docs/compatibility.md).
+Full table and caveats: [docs/compatibility.md](docs/compatibility.md).
 
 ## Documentation
 
+- [Installation](docs/installation.md): pipx, adapters, manual copy, Termux
+- [CLI](docs/cli.md): every command, flag and exit code
 - [Architecture](docs/architecture.md): how the skill is split, and why
 - [Workflow](docs/workflow.md): seven phases, three depths, the artifacts
 - [Engineering](docs/engineering.md): recon, architecture, frontend, backend,
