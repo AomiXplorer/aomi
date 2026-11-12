@@ -1,0 +1,4 @@
+area,feature,priority,reference,clone,notes
+booking,Public page with open slots,must,yes,no,
+booking,Time zone detection on the booking page,must,yes,no,
+team,Round-robin across members,could,,no,out of scope v1

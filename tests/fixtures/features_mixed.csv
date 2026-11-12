@@ -1,0 +1,6 @@
+area,feature,priority,reference,clone,notes
+booking,Public page with open slots,must,yes,yes,
+booking,Time zone detection,must,yes,partial,
+booking,Recurring events,should,yes,no,
+sharing,Embed on a website,could,yes,no,
+extra,Our own export to CSV,should,no,yes,not in the reference, not scored

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Generic SaaS</title>
+<style>
+  :root { --brand: #6366f1; --bg: #ffffff; }
+  .card { border-radius: 16px; }
+  .card2 { border-radius: 16px; }
+  .card3 { border-radius: 16px; }
+  .card4 { border-radius: 16px; }
+  .card5 { border-radius: 16px; }
+  .glow { box-shadow: 0 0 40px rgba(99, 102, 241, 0.45); }
+  .blur { backdrop-filter: blur(18px); }
+  .grad { background: linear-gradient(90deg, #6366f1, #a855f7); }
+  .card:hover { transform: scale(1.05); }
+  .section { padding-top: 5rem; padding-bottom: 5rem; }
+  .card:hover { transition: transform 120ms ease-out; }
+</style>
+</head>
+<body>
+  <section class="hero">
+    <h1 class="text-center">Supercharge your workflow</h1>
+    <p class="text-center">The seamless way to elevate your team.</p>
+    <button class="btn bg-indigo-500">Get Started</button>
+    <a href="#more" class="btn-ghost">Learn more</a>
+  </section>
+
+  <section class="grid grid-cols-3">
+    <article class="card glow"><h2>Fast</h2><button>🚀 Launch</button></article>
+    <article class="card blur"><h2>Secure</h2></article>
+    <article class="card grad"><h2>Scalable</h2></article>
+  </section>
+  <section class="grid grid-cols-3 section">
+    <article class="card2"><h2>One</h2></article>
+    <article class="card3"><h2>Two</h2></article>
+    <article class="card4"><h2>Three</h2></article>
+  </section>
+  <section class="grid grid-cols-3 section">
+    <article class="card5"><h2>Again</h2></article>
+    <article class="card5"><h2>Again</h2></article>
+    <article class="card5"><h2>Again</h2></article>
+  </section>
+
+  <p>Trusted by 12,400 teams worldwide.</p>
+  <img src="hero.png">
+  <form>
+    <input type="email" placeholder="Work email">
+    <input type="text" name="company">
+  </form>
+</body>
+</html>

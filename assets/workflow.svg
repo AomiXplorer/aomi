@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 680" width="1200" height="680" role="img" aria-label="Aomi workflow matrix: seven phases across engineering and design, with the artifact each phase produces">
+  <title>The Aomi loop</title>
+  <rect width="1200" height="680" fill="#F6F1EA"/>
+
+  <text x="80" y="88" font-family="Noto Serif, Georgia, serif" font-size="40" fill="#33303A">The Aomi loop</text>
+  <text x="80" y="120" font-family="Noto Sans, Helvetica, Arial, sans-serif" font-size="16" fill="#6E6570">Seven phases, one decision trail. Depth is chosen at Frame, never assumed.</text>
+
+  <g font-family="Noto Sans, Helvetica, Arial, sans-serif" font-size="12" fill="#8B8078" letter-spacing="2.4">
+    <text x="80" y="180">PHASE</text>
+    <text x="462" y="180">ENGINEERING</text>
+    <text x="612" y="180">DESIGN</text>
+    <text x="770" y="180">WHAT IT LEAVES BEHIND</text>
+  </g>
+  <line x1="80" y1="196" x2="1120" y2="196" stroke="#C9BBAE" stroke-width="1.5"/>
+
+  <g font-family="Noto Sans, Helvetica, Arial, sans-serif" font-size="17" fill="#33303A">
+    <text x="80" y="240">Frame</text>
+    <text x="80" y="297">Read</text>
+    <text x="80" y="354">Decide</text>
+    <text x="80" y="411">Make</text>
+    <text x="80" y="468">Prove</text>
+    <text x="80" y="525">Polish</text>
+    <text x="80" y="582">Sign</text>
+  </g>
+
+  <g font-family="Noto Sans, Helvetica, Arial, sans-serif" font-size="15" fill="#6E6570">
+    <text x="770" y="240">brief.md  ·  depth level  ·  what is out of scope</text>
+    <text x="770" y="297">map.md  ·  features.csv  ·  screen inventory</text>
+    <text x="770" y="354">decisions.md  ·  architecture  ·  design direction</text>
+    <text x="770" y="411">the implementation  ·  build-log.md</text>
+    <text x="770" y="468">proof.md  ·  functional results  ·  audit score</text>
+    <text x="770" y="525">the refined build  ·  fixes, each with a reason</text>
+    <text x="770" y="582">handoff.md  ·  the go / no-go call</text>
+  </g>
+
+  <g stroke="#33303A" stroke-width="2">
+    <circle cx="482" cy="234" r="9" fill="#33303A"/>
+    <circle cx="482" cy="291" r="9" fill="none"/>
+    <circle cx="482" cy="348" r="9" fill="#33303A"/>
+    <circle cx="482" cy="405" r="9" fill="#33303A"/>
+    <circle cx="482" cy="462" r="9" fill="none"/>
+    <circle cx="482" cy="519" r="9" fill="none"/>
+    <circle cx="482" cy="576" r="9" fill="#33303A"/>
+  </g>
+  <g stroke="#A2606E" stroke-width="2">
+    <circle cx="632" cy="234" r="9" fill="#A2606E"/>
+    <circle cx="632" cy="291" r="9" fill="#A2606E"/>
+    <circle cx="632" cy="348" r="9" fill="#A2606E"/>
+    <circle cx="632" cy="405" r="9" fill="none"/>
+    <circle cx="632" cy="462" r="9" fill="none"/>
+    <circle cx="632" cy="519" r="9" fill="#A2606E"/>
+    <circle cx="632" cy="576" r="9" fill="#A2606E"/>
+  </g>
+
+  <path d="M 482 234 C 530 234 584 234 632 234" fill="none" stroke="#C9A46A" stroke-width="2"/>
+  <path d="M 482 348 C 530 300 584 396 632 348" fill="none" stroke="#C9A46A" stroke-width="2"/>
+  <path d="M 482 576 C 530 576 584 576 632 576" fill="none" stroke="#C9A46A" stroke-width="2"/>
+
+  <line x1="80" y1="628" x2="1120" y2="628" stroke="#DFD3C8" stroke-width="1"/>
+  <g font-family="Noto Sans, Helvetica, Arial, sans-serif" font-size="13" fill="#6E6570">
+    <circle cx="88" cy="652" r="7" fill="#33303A"/><text x="104" y="657">leads the phase</text>
+    <circle cx="238" cy="652" r="7" fill="none" stroke="#33303A" stroke-width="2"/><text x="254" y="657">contributes without owning it</text>
+    <text x="770" y="657">gold thread = where the two intelligences have to agree</text>
+  </g>
+</svg>

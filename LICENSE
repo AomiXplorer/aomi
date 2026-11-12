@@ -1,0 +1,221 @@
+AOMI PERSONAL USE LICENSE
+Version 1.0
+Copyright (c) 2026 Aomi. All rights reserved.
+
+--------------------------------------------------------------------------------
+0. WHAT THIS LICENSE IS
+--------------------------------------------------------------------------------
+
+This is a custom, source-available license written for the Aomi project. It is
+not an open source license, and it is not approved by the Open Source Initiative
+(OSI), the Free Software Foundation, or any other body. It does not grant the
+freedoms that an open source license grants, in particular the freedom to use
+the work commercially or to redistribute it.
+
+The copyright holder is "Aomi", which is the project's brand and publishing name.
+No individual identity is asserted by this document. If a legal person is later
+named as the rights holder, that party becomes the rights holder for the purposes
+of this license, and this section may be updated to say so without affecting the
+grants already made.
+
+"THE WORK" means the original contents of this repository: the skill
+instructions, the reference documents, the templates, the scripts, the
+documentation, the visual assets created for this project, and the license
+itself.
+
+--------------------------------------------------------------------------------
+1. GRANT: WHAT YOU MAY DO WITHOUT ASKING
+--------------------------------------------------------------------------------
+
+Subject to your compliance with this license, you are granted a worldwide,
+royalty-free, non-exclusive, non-transferable permission to:
+
+  a. read, view and study the Work, including its source code and instruction
+     files;
+
+  b. download and keep one or more copies of the Work for your own personal,
+     non-commercial use;
+
+  c. use the Work for personal projects, personal learning, research, teaching
+     in a non-commercial setting, and evaluation;
+
+  d. modify your own copy of the Work for those personal, non-commercial
+     purposes;
+
+  e. run the Work, including installing it into an AI agent or a development
+     environment that you control, for those personal, non-commercial purposes.
+
+"Personal, non-commercial use" means use that is not intended for or directed
+toward commercial advantage or monetary compensation. Using the Work to build
+something you give away for free, for yourself, or for study, is personal use.
+Using the Work in the course of a business, for a client, as part of a paid
+product or a paid service, or to produce work you sell, is not.
+
+--------------------------------------------------------------------------------
+2. PERMISSION YOU MUST OBTAIN: COMMERCIAL USE
+--------------------------------------------------------------------------------
+
+Commercial use of the Work, in whole or in substantial part, requires prior
+written permission from the rights holder.
+
+Commercial use includes, without limitation:
+
+  a. using the Work, or a derivative of it, in or as part of a product or
+     service that is sold, licensed, subscription-based, ad-supported, or
+     otherwise monetised;
+
+  b. using the Work to deliver paid work to a client;
+
+  c. using the Work inside a company's internal tooling where the tooling is
+     part of how that company earns revenue;
+
+  d. bundling the Work with hardware, hosting, training, or support that is sold.
+
+Requests for permission should be made to the rights holder in writing. The
+rights holder may grant, refuse, or grant on conditions, at their discretion.
+Silence is not permission.
+
+--------------------------------------------------------------------------------
+3. WHAT YOU MAY NOT DO
+--------------------------------------------------------------------------------
+
+Without prior written permission from the rights holder, you may not:
+
+  a. redistribute the Work, in whole or in substantial part, whether modified or
+     not, whether free of charge or for a fee;
+
+  b. sell, resell, sublicense, rent, lease, or otherwise make the Work available
+     as a product or service to third parties;
+
+  c. publish the Work, or a derivative of it, as a product of your own or under
+     another name, brand, or identity;
+
+  d. remove, obscure, or alter any copyright notice, license text, or
+     attribution to Aomi contained in the Work;
+
+  e. use the name "Aomi", the Aomi mark, or the Aomi visual identity, or any
+     confusingly similar name or mark, to present the Work, a derivative of the
+     Work, or any other product as being created, endorsed, sponsored, or
+     maintained by Aomi, or to claim authorship of the Work;
+
+  f. use the Work to train, fine-tune, distil, or otherwise build a machine
+     learning model that is distributed or offered commercially, without
+     permission;
+
+  g. remove or bypass any part of this license from your copy of the Work.
+
+Attribution is a condition of the license, not a courtesy. If you share your
+personal copy with anyone permitted under this license, it must retain the
+LICENSE file and the notices that identify Aomi.
+
+--------------------------------------------------------------------------------
+4. DERIVATIVE WORKS
+--------------------------------------------------------------------------------
+
+You may create derivative works for personal, non-commercial use under Section 1.
+Every derivative work remains subject to this license, must retain the notices
+required by Section 3(d), and must state clearly that it has been modified.
+
+A derivative work does not become yours to distribute. Sections 2 and 3 apply to
+derivative works exactly as they apply to the Work.
+
+--------------------------------------------------------------------------------
+5. THIRD-PARTY MATERIAL IS NOT COVERED
+--------------------------------------------------------------------------------
+
+This license covers only original material created for Aomi. It does not grant
+any rights in third-party material, and it does not claim any rights over it.
+Where the repository mentions, points to, or depends on third-party software,
+fonts, or data, those items remain under their own licenses and you must comply
+with those separately.
+
+Aomi is an independent implementation. It is not a fork, a copy, or a rebrand of
+another project. The provenance of every part of the Work is documented in
+docs/provenance.md so that this claim can be checked rather than believed.
+
+--------------------------------------------------------------------------------
+6. NO WARRANTY
+--------------------------------------------------------------------------------
+
+THE WORK IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
+INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A
+PARTICULAR PURPOSE, TITLE, AND NON-INFRINGEMENT.
+
+The Work consists in part of instructions intended to guide an AI system. Its
+output is not guaranteed to be correct, complete, secure, or suitable for any
+purpose. You are responsible for reviewing, testing, and accepting anything
+produced with its help, including code, configuration, and deployments.
+
+No statement in this license, in the documentation, or in the project's
+publicity is a promise that the Work is free of defects, or that using it will
+produce a particular result.
+
+--------------------------------------------------------------------------------
+7. LIMITATION OF LIABILITY
+--------------------------------------------------------------------------------
+
+TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, IN NO EVENT SHALL THE RIGHTS
+HOLDER BE LIABLE FOR ANY CLAIM, DAMAGES, OR OTHER LIABILITY, WHETHER IN AN
+ACTION OF CONTRACT, TORT, OR OTHERWISE, ARISING FROM, OUT OF, OR IN CONNECTION
+WITH THE WORK OR THE USE OR OTHER DEALINGS IN THE WORK.
+
+This includes, without limitation, lost profits, lost data, business
+interruption, and any loss arising from software, content, or configuration
+generated with the help of the Work.
+
+Where liability cannot be excluded by law, the total liability of the rights
+holder is limited to the amount you paid for the Work, which for a freely
+obtained copy is zero.
+
+--------------------------------------------------------------------------------
+8. TERMINATION
+--------------------------------------------------------------------------------
+
+This license terminates automatically if you breach any of its terms. On
+termination you must stop using the Work and destroy copies in your possession,
+except for one archival copy kept solely to verify what the terms were.
+
+The rights holder may also terminate this license for any reason by publishing a
+new version of the license or a notice in the repository. Termination does not
+affect the validity of any permission granted to you before termination for acts
+already completed in compliance with this license.
+
+Sections 3, 5, 6, 7, and 9 survive termination.
+
+--------------------------------------------------------------------------------
+9. INTERPRETATION, AND WHAT THIS LICENSE DOES NOT SETTLE
+--------------------------------------------------------------------------------
+
+This license is drafted to be read as written, in plain language. Where a term is
+ambiguous, the reading that preserves the intent stated in the section headings
+applies: personal and study use is permitted, commercial use and redistribution
+are not.
+
+This document is not legal advice. It has not been reviewed by a lawyer, and it
+has not been tested in any court. It makes no claim to provide absolute legal
+protection, and it does not replace the law of your jurisdiction, which may grant
+you rights this license cannot remove (for example, statutory rights of fair use,
+fair dealing, or the right to make a private backup).
+
+No governing law and no forum are specified here, because the rights holder's
+legal identity is not established. If you intend to rely on this license
+commercially, distribute the Work, or enforce it, obtain legal advice first and
+settle those terms explicitly.
+
+If any provision of this license is held unenforceable, the remaining provisions
+continue in effect, and the unenforceable provision is read down to the minimum
+extent necessary to make it enforceable.
+
+--------------------------------------------------------------------------------
+10. VERSIONING
+--------------------------------------------------------------------------------
+
+This is version 1.0 of the Aomi Personal Use License. Later versions may be
+published with different terms. A copy of the Work is governed by the version
+that accompanied it when you obtained it, unless you choose to accept a later
+version.
+
+--------------------------------------------------------------------------------
+
+To ask for permission, or to report a use that this license does not allow,
+contact the maintainer through the repository's issue tracker.

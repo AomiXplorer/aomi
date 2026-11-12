@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Clinic day list</title>
+<style>
+  :root {
+    --ground: #F4F7F6;
+    --surface: #FFFFFF;
+    --ink: #1E2A2B;
+    --ink-muted: #5A6A69;
+    --brand: #16626B;
+    --line: #D7E0DE;
+    --radius-sm: 4px;
+    --radius-md: 8px;
+    --radius-lg: 14px;
+  }
+  body {
+    font-family: "Public Sans", system-ui, sans-serif;
+    background: var(--ground);
+    color: var(--ink);
+    margin: 0;
+  }
+  h1 { font-family: Newsreader, Georgia, serif; font-size: 2.5rem; line-height: 1.1; }
+  .bar { display: flex; gap: 24px; padding: 16px 32px; border-bottom: 1px solid var(--line); background: var(--surface); }
+  .note { border: 1px solid var(--line); border-radius: var(--radius-lg); padding: 24px; }
+  .chip { border-radius: var(--radius-sm); padding: 4px 8px; background: var(--surface); }
+  .button { border-radius: var(--radius-md); padding: 8px 16px; background: var(--brand); color: #FFFFFF; border: 0; }
+  .button:focus-visible { outline: 2px solid var(--brand); outline-offset: 2px; }
+  .rows { padding: 48px 32px; }
+  @media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; }
+  }
+</style>
+</head>
+<body>
+  <header class="bar">
+    <strong>Thursday, 12 March</strong>
+    <a href="#later">Later today</a>
+  </header>
+  <main class="rows">
+    <h1>Four appointments, one unfinished note</h1>
+    <p class="note">The 09:30 slot has no outcome recorded. It will keep appearing here until it does.</p>
+
+    <label for="filter">Filter by practitioner</label>
+    <input id="filter" name="filter" type="search" placeholder="Dr Aisyah">
+
+    <ul>
+      <li class="chip">09:00, Dr Aisyah, follow-up</li>
+      <li class="chip">09:30, Dr Aisyah, first visit</li>
+      <li class="chip">10:15, Dr Rahman, review</li>
+    </ul>
+
+    <img src="day.png" alt="Bar chart of appointments per hour, highest at nine in the morning" width="480" height="240">
+
+    <button class="button" type="button">Record outcome</button>
+
+    <div id="empty" hidden>No appointments left today.</div>
+  </main>
+</body>
+</html>

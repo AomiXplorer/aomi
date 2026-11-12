@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" role="img" aria-label="Aomi mark: two overlapping rings with a dot where they meet">
+  <title>Aomi</title>
+  <defs>
+    <clipPath id="aomi-ring-a">
+      <circle cx="100" cy="128" r="58"/>
+    </clipPath>
+  </defs>
+  <g fill="none" stroke="#33303A" stroke-width="8">
+    <circle cx="100" cy="128" r="58"/>
+    <circle cx="156" cy="128" r="58"/>
+  </g>
+  <circle cx="156" cy="128" r="58" fill="#A2606E" clip-path="url(#aomi-ring-a)"/>
+  <g fill="none" stroke="#33303A" stroke-width="8">
+    <circle cx="100" cy="128" r="58"/>
+    <circle cx="156" cy="128" r="58"/>
+  </g>
+  <circle cx="128" cy="128" r="10" fill="#C9A46A"/>
+</svg>
