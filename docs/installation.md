@@ -193,12 +193,20 @@ launcher that came from pipx.
 
 No build step, no compiled dependency, no colour unless the terminal claims a real
 one, and no full-screen redraw. Everything is text and standard-library Python.
+On Termux the launcher goes to `$PREFIX/bin`, which is already on `PATH`, so there
+is no profile line to add and no `~/.local/bin` to remember. The launcher is a
+Python file whose first line names the interpreter that ran `install.py`, not a
+`#!/bin/sh` script, because Termux has no `/bin`.
+
 `python3 install.py` and `python3 -m aomi` both work from a clone when pipx is not
 available, and `AOMI_NONINTERACTIVE=1` makes every command take its answers from
 flags.
 
 ## When something looks wrong
 
+- `python3: can't open file 'install.py': No such file or directory` means the clone
+  is older than the installer. Run `git pull` in it; `install.py` landed after the
+  first releases. `git log --oneline -1` shows which commit you are on.
 - `cannot find the skill files` means the package and its bundled skill tree are out
   of step. Reinstall the way you installed: `python3 install.py` from a fresh clone,
   or `pipx install --force git+https://github.com/AomiXplorer/aomi.git`.

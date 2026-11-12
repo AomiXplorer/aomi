@@ -112,6 +112,24 @@ class BootstrapTests(unittest.TestCase):
         self.assertFalse(self.launcher.exists())
         self.assertFalse(self.app.exists())
 
+    def test_termux_uses_the_prefix_that_is_already_on_path(self):
+        env = {"HOME": "/data/data/com.termux/files/home", "TERMUX_VERSION": "0.118",
+               "PREFIX": "/data/data/com.termux/files/usr"}
+        self.assertTrue(bootstrap.is_termux(env))
+        self.assertEqual(bootstrap.default_bin_dir(env),
+                         pathlib.Path("/data/data/com.termux/files/usr/bin"))
+        self.assertEqual(bootstrap.default_bin_dir({"HOME": "/home/ana"}),
+                         pathlib.Path("/home/ana/.local/bin"))
+
+    def test_launcher_does_not_need_bin_sh(self):
+        # Termux has no /bin, and termux-exec is not guaranteed, so a #!/bin/sh
+        # launcher is the one thing that breaks there
+        run(["--yes"], self.project, self.home)
+        first = self.launcher.read_text().splitlines()[0]
+        self.assertTrue(first.startswith("#!"))
+        self.assertNotIn("/bin/sh", first)
+        self.assertIn("python", first)
+
     def test_path_advice_names_the_right_file_for_the_shell(self):
         line, rc = bootstrap.path_advice(self.launcher.parent, {"SHELL": "/bin/zsh"})
         self.assertIn(".zshrc", rc)

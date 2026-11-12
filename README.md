@@ -64,6 +64,8 @@ That puts the `aomi` command in `~/.local/bin` and asks once whether to copy the
 skill into your agent. No pip, no virtualenv, no root. If the folder is not on your
 PATH, it prints the one line to add.
 
+If `install.py` is missing, the clone is older than the installer: `git pull` first.
+
 Already have pipx? One line instead:
 
 ```bash

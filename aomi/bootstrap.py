@@ -23,12 +23,18 @@ import sys
 
 from . import __version__, adapters, installer, paths, ui
 
-LAUNCHER_LINES = """#!/bin/sh
+# A python file, not a shell script: the shebang names the interpreter that ran
+# install.py, so nothing depends on /bin/sh existing. Termux has no /bin.
+LAUNCHER = """#!%(python)s
 # The aomi command, written by install.py. Rerun that to update it.
-PY="${AOMI_PYTHON:-%(python)s}"
-PYTHONPATH="%(app)s${PYTHONPATH:+:$PYTHONPATH}"
-export PYTHONPATH
-exec "$PY" -m aomi "$@"
+import sys
+
+sys.path.insert(0, %(app)r)
+
+from aomi.cli import main
+
+if __name__ == "__main__":
+    sys.exit(main())
 """
 MARKER = "written by install.py"
 
@@ -48,8 +54,17 @@ def default_app_dir(env: dict | None = None) -> pathlib.Path:
     return data_home(env) / "aomi"
 
 
+def is_termux(env: dict | None = None) -> bool:
+    """Termux keeps its own prefix and already has it on PATH."""
+    env = os.environ if env is None else env
+    return bool(env.get("TERMUX_VERSION")) or "com.termux" in env.get("PREFIX", "")
+
+
 def default_bin_dir(env: dict | None = None) -> pathlib.Path:
-    return pathlib.Path((os.environ if env is None else env).get("HOME", "~")).expanduser() / ".local" / "bin"
+    env = os.environ if env is None else env
+    if is_termux(env) and env.get("PREFIX"):
+        return pathlib.Path(env["PREFIX"]) / "bin"
+    return pathlib.Path(env.get("HOME", "~")).expanduser() / ".local" / "bin"
 
 
 def install_files() -> list[tuple[str, pathlib.Path]]:
@@ -61,7 +76,7 @@ def install_files() -> list[tuple[str, pathlib.Path]]:
 
 
 def launcher_text(app: pathlib.Path, python: str) -> str:
-    return LAUNCHER_LINES % {"python": python, "app": app}
+    return LAUNCHER % {"python": python, "app": str(app)}
 
 
 def path_advice(bin_dir: pathlib.Path, env: dict | None = None) -> tuple[str, str]:
