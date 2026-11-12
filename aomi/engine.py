@@ -645,9 +645,12 @@ def command_doctor(args) -> int:
     elif "AOMI PERSONAL USE LICENSE" not in licence.read_text():
         add("error", "E120", "LICENSE is not the Aomi licence")
 
-    for name in ("README.md", ".gitignore"):
-        if not (root / name).exists():
-            add("error", "E130", f"{name} is missing")
+    if not (root / "README.md").exists():
+        add("error", "E130", "README.md is missing")
+    # .gitignore belongs to the repository; an installed skill has no .git
+    if (root / ".git").exists() or (root / "pyproject.toml").exists():
+        if not (root / ".gitignore").exists():
+            add("error", "E130", ".gitignore is missing")
 
     readme = root / "README.md"
     if readme.exists():

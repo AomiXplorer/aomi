@@ -222,10 +222,10 @@ def command_install(args) -> int:
     if report["problems"]:
         return 1
     if report["action"] != "dry-run":
+        where = str(cwd) if scope == "project" else "that folder"
         print()
-        print("  the `aomi` command comes from pipx; the files above are the skill.")
-        print(f"  open {adapter.label} in {target.parent.parent if scope == 'project' else 'that folder'} "
-              "and ask it to use aomi.")
+        print(f"  open {adapter.label} in {where} and ask it to use aomi.")
+        print("  the `aomi` command stays on your PATH; `aomi update` refreshes this copy.")
     return 0
 
 
