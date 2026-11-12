@@ -100,5 +100,5 @@ python3 -m unittest discover -s tests -v
 
 The suite covers the command line, the fixtures above, the skill's own structure
 (`doctor`), and one consistency test that reads `design/slop-gate.md` and
-`scripts/aomi.py` and fails if a documented weight and an implemented weight
+`aomi/engine.py` and fails if a documented weight and an implemented weight
 disagree.

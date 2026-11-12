@@ -61,8 +61,12 @@ rather than obligation.
 | `references/palettes.md` | written for Aomi; hex values chosen here and measured with Aomi's own tool |
 | `references/stack-notes.md` | written for Aomi |
 | `templates/` (6 files) | written for Aomi |
-| `scripts/aomi.py` | written for Aomi |
+| `aomi/` (cli, engine, installer, adapters, init, config, ui, paths) | written for Aomi |
+| `scripts/aomi.py` | written for Aomi; a shim that hands over to `aomi.cli` |
+| `scripts/run.sh` | written for Aomi |
 | `scripts/build_assets.py` | written for Aomi |
+| `pyproject.toml`, `setup.py`, `MANIFEST.in` | written for Aomi; packaging metadata only, no dependency |
+| `docs/cli.md`, `docs/installation.md` | written for Aomi |
 | `tests/` (suite and fixtures) | written for Aomi |
 | `assets/logo.svg`, `assets/workflow.svg` | designed for Aomi |
 | `assets/hero.png` | artwork generated with an image model from an Aomi-authored art direction, composed with Aomi typography |
@@ -76,7 +80,7 @@ Nothing above is marked as derived, because nothing is.
 ## How the claim is checked
 
 ```bash
-python3 scripts/aomi.py doctor
+aomi doctor          # or: python3 -m aomi doctor
 ```
 
 The doctor command scans every instruction, code and documentation file for file

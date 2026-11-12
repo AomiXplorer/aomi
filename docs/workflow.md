@@ -82,11 +82,11 @@ wrote it down.
 The commands behind the measurable phases:
 
 ```bash
-python3 scripts/aomi.py init .
-python3 scripts/aomi.py audit .
-python3 scripts/aomi.py contrast aomi/tokens.json
-python3 scripts/aomi.py parity aomi/features.csv
-python3 scripts/aomi.py doctor
+aomi init .
+aomi audit .
+aomi contrast aomi/tokens.json
+aomi parity aomi/features.csv
+aomi doctor
 ```
 
 The phase instructions themselves live in `core/workflow.md` (the loop and the

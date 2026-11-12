@@ -58,12 +58,16 @@ def build_parser() -> Parser:
 
     p = sub.add_parser("update", help="refresh installed copies to this version")
     p.add_argument("--agent", "-a")
+    p.add_argument("--global", dest="global_scope", action="store_true", help="the user-wide path")
+    p.add_argument("--project", dest="project_scope", action="store_true", help="the project path (default)")
     p.add_argument("--dir")
     p.add_argument("--yes", "-y", action="store_true")
     p.set_defaults(func=command_update)
 
     p = sub.add_parser("uninstall", help="remove installed copies")
     p.add_argument("--agent", "-a")
+    p.add_argument("--global", dest="global_scope", action="store_true", help="the user-wide path")
+    p.add_argument("--project", dest="project_scope", action="store_true", help="the project path (default)")
     p.add_argument("--dir")
     p.add_argument("--yes", "-y", action="store_true")
     p.set_defaults(func=command_uninstall)
@@ -222,9 +226,14 @@ def command_install(args) -> int:
     if report["problems"]:
         return 1
     if report["action"] != "dry-run":
-        where = str(cwd) if scope == "project" else "that folder"
+        if scope == "project":
+            instruction = f"open {adapter.label} in {cwd}"
+        elif scope == "global":
+            instruction = f"restart {adapter.label}"
+        else:
+            instruction = f"point {adapter.label} at that folder"
         print()
-        print(f"  open {adapter.label} in {where} and ask it to use aomi.")
+        print(f"  {instruction} and ask it to use aomi.")
         print("  the `aomi` command stays on your PATH; `aomi update` refreshes this copy.")
     return 0
 

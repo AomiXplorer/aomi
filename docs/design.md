@@ -34,7 +34,7 @@ Nine roles, chosen before any hex value: ground, surface, surface raised, ink,
 ink muted, line, brand, brand on, and the semantic four. Distribution is 60/30/10
 and the brand is almost always inside the ten.
 
-Contrast is a gate, not an opinion: `python3 scripts/aomi.py contrast` measures
+Contrast is a gate, not an opinion: `aomi contrast` measures
 declared text pairs against 4.5:1 for body and 3:1 for large text and UI. Dark
 mode is a second palette, not an inversion. See
 [color.md](../design/color.md) and the six measured starting points in

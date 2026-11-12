@@ -8,10 +8,10 @@ Run all of it, paste the output into `aomi/handoff.md`. A skipped line is a line
 you do not know.
 
 ```bash
-python3 scripts/aomi.py doctor                  # structure, links, frontmatter, assets
-python3 scripts/aomi.py audit .                 # design signals, no blockers
-python3 scripts/aomi.py parity aomi/features.csv # must-haves complete
-python3 scripts/aomi.py contrast aomi/tokens.json # text pairs pass
+aomi doctor                  # structure, links, frontmatter, assets
+aomi audit .                 # design signals, no blockers
+aomi parity aomi/features.csv # must-haves complete
+aomi contrast aomi/tokens.json # text pairs pass
 <your test command> -q                          # functional suite green
 <your build command>                            # production build passes
 ```

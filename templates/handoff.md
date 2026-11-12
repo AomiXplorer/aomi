@@ -12,10 +12,10 @@
 Paste the real output, not a summary of it.
 
 ```text
-$ python3 scripts/aomi.py doctor
-$ python3 scripts/aomi.py audit .
-$ python3 scripts/aomi.py parity aomi/features.csv
-$ python3 scripts/aomi.py contrast aomi/tokens.json
+$ aomi doctor
+$ aomi audit .
+$ aomi parity aomi/features.csv
+$ aomi contrast aomi/tokens.json
 $ <test command>
 $ <build command>
 ```

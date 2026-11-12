@@ -267,6 +267,17 @@ class InstallCommandTest(unittest.TestCase):
                 self.assertEqual(code, 0, out)
                 self.assertIn("updated", out)
 
+    def test_uninstall_accepts_the_scope_flags(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            cwd, home = pathlib.Path(tmp), pathlib.Path(tmp) / "home"
+            home.mkdir()
+            with mock.patch.object(pathlib.Path, "cwd", return_value=cwd), \
+                 mock.patch.object(pathlib.Path, "home", return_value=home):
+                self.assertEqual(run(["install", "--agent", "claude", "--global", "--yes"])[0], 0)
+                self.assertTrue((home / ".claude" / "skills" / "aomi" / "SKILL.md").is_file())
+                self.assertEqual(run(["uninstall", "--agent", "claude", "--global", "--yes"])[0], 0)
+                self.assertFalse((home / ".claude" / "skills" / "aomi").exists())
+
     def test_uninstall_end_to_end(self):
         with tempfile.TemporaryDirectory() as tmp:
             cwd = pathlib.Path(tmp)

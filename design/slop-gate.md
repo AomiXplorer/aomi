@@ -93,7 +93,7 @@ score   = max(0, 100 - 7 * penalty)
 
 Text contrast has no sweep signal on purpose: guessing which colour pairs meet in
 a stylesheet produces false alarms. It is measured properly, pair by pair, by
-`python3 scripts/aomi.py contrast aomi/tokens.json`, which must pass before Sign.
+`aomi contrast aomi/tokens.json`, which must pass before Sign.
 
 A weight-4 signal alone drops a perfect page to 72. That is intentional: invented
 proof is the one thing that cannot be justified.

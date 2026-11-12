@@ -45,7 +45,7 @@ it to signal the one action that matters.
 | focus ring against its neighbours | 3:1 |
 | purely decorative lines | not required |
 
-Run `python3 scripts/aomi.py contrast aomi/tokens.json` and let it fail the
+Run `aomi contrast aomi/tokens.json` and let it fail the
 build. Text on tinted surfaces is where contrast quietly dies: a 12% tint of the
 brand behind 16px grey text is a common and invisible failure.
 

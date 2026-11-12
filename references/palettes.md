@@ -4,7 +4,7 @@ Six starting points, one per kind of product. They are starting points, not
 answers: take the ground, the ink and the temperature, then choose the brand hue
 from the product and check every pair with the tool.
 
-Every ratio below was computed with `python3 scripts/aomi.py contrast` against the
+Every ratio below was computed with `aomi contrast` against the
 values in the table, with `#FFFFFF` on light grounds and `#101216` on dark ones.
 
 | palette | ground | surface | ink | muted ink | brand |
