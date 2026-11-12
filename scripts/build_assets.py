@@ -116,8 +116,7 @@ def build_hero(exe: str) -> None:
 {MARK.format(x=128, y=92, s=0.52, ink=INK, rose=ROSE, gold=GOLD)}
 
   <text x="128" y="316" font-family="Noto Serif, Georgia, serif" font-size="112" fill="{INK}" letter-spacing="1">Aomi</text>
-  <text x="132" y="372" font-family="Noto Sans, Helvetica, Arial, sans-serif" font-size="25" fill="{MUTED}">Understand first. Build once. Design on purpose.</text>
-  <line x1="132" y1="424" x2="700" y2="424" stroke="{HAIRLINE}" stroke-width="1.5"/>
+  <line x1="132" y1="364" x2="700" y2="364" stroke="{HAIRLINE}" stroke-width="1.5"/>
   <text x="132" y="456" font-family="Noto Sans, Helvetica, Arial, sans-serif" font-size="13" fill="{LABEL}" letter-spacing="3.6">ENGINEERING INTELLIGENCE  &#215;  DESIGN INTELLIGENCE</text>
 </svg>"""
     tmp = pathlib.Path("/tmp/aomi-hero.svg")

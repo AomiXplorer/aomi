@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="assets/hero.png" alt="Aomi: a cream banner with the mark and the line understand first, build once, design on purpose">
+  <img src="assets/hero.png" alt="Aomi banner: the mark and wordmark on cream, beside a framed panel of soft abstract artwork">
 </p>
 
 <p align="center">
